@@ -9,11 +9,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --silver: #adadadff;
-  --blood-red: #5f0000ff;
-  --cinereous: #8a736bff;
-  --persian-red: #d14136ff;
-  --charcoal: #435269ff;
 }
 
 code {
