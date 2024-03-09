@@ -1,5 +1,6 @@
-import HomeLink from "../shared/HomeBtn";
 import React, { useState } from "react";
+import HomeLink from "../shared/HomeBtn";
+import { calculateWarmUpSets } from "../../helpers/calcFuncs";
 
 function WarmUpCalc() {
   const [workingSet, setWorkingSet] = useState("");
@@ -14,40 +15,15 @@ function WarmUpCalc() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const calculatedSets = calculateWarmUpSets(
-      workingSet,
-      experienceLevel,
-      isLbs
-    );
-    setWarmUpSets(calculatedSets);
-  };
-
-  const calculateWarmUpSets = (weight, level, isLbs) => {
-    const emptyBar = isLbs ? 45 : 20; // kg equivalent of 45lbs is roughly 20.4kg
-    const roundingFactor = isLbs ? 5 : 0.5;
-    // Round weight based on units
-    const roundedWeight = (weight) =>
-      Math.round(weight / roundingFactor) * roundingFactor;
-
-    if (level === "Novice") {
-      const increment = (roundedWeight(weight) - emptyBar) / 4;
-      return [
-        { reps: 10, weight: emptyBar },
-        { reps: 7, weight: roundedWeight(emptyBar + increment) },
-        { reps: 5, weight: roundedWeight(emptyBar + 2 * increment) },
-        { reps: 3, weight: roundedWeight(emptyBar + 3 * increment) },
-      ];
+    if (workingSet.length === 0) {
+      return;
     } else {
-      // Advanced
-      const advancedReps = [10, 5, 3, 2, 1];
-      const percentages = [1, 0.25, 0.45, 0.75, 0.9];
-
-      return advancedReps.map((reps, index) => {
-        let load;
-        index === 0 && (load = emptyBar);
-        index !== 0 && (load = roundedWeight(weight * percentages[index]));
-        return { reps, weight: load };
-      });
+      const calculatedSets = calculateWarmUpSets(
+        workingSet,
+        experienceLevel,
+        isLbs
+      );
+      setWarmUpSets(calculatedSets);
     }
   };
 

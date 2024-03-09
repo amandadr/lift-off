@@ -1,15 +1,13 @@
 const calculators = [
-  { name: "Barbell Calculator", to: "/barbell", component: "BarbellCalc" },
-  { name: "One Rep Max Calculator", to: "/one-rep-max", component: "ORMCalc" },
+  { name: "Barbell Calculator", to: "/barbell" },
+  { name: "One Rep Max Calculator", to: "/one-rep-max" },
   {
-    name: "Optimal Load Calculator",
-    to: "/optimal-load",
-    component: "LoadCalc",
+    name: "Optimal Reps Calculator",
+    to: "/optimal-reps",
   },
   {
     name: "Warm Up Sets Calculator",
     to: "/warm-up-sets",
-    component: "WarmUpCalc",
   },
 ];
 

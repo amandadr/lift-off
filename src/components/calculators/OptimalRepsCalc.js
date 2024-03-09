@@ -1,13 +1,13 @@
 import React from "react";
 import HomeLink from "../shared/HomeBtn";
 
-const LoadCalc = () => {
+const OptimalRepsCalc = () => {
   return (
     <div>
-      <h1>Load Calculator</h1>
+      <h1>Optimal Reps Calculator</h1>
       <HomeLink />
     </div>
   );
 };
 
-export default LoadCalc;
+export default OptimalRepsCalc;

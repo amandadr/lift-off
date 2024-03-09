@@ -1,31 +1,7 @@
 import React, { useState } from "react";
 import HomeLink from "../shared/HomeBtn";
-
-function calculateORM(weight, reps, isLbs) {
-  // Validation
-  if (isNaN(weight) || isNaN(reps) || weight <= 0 || reps <= 0) {
-    return alert(
-      "Invalid input: Please enter positive numbers for weight and reps."
-    );
-  }
-  // Convert to lbs for formula accuracy
-  const weightInLbs = isLbs ? weight : weight * 2.20462;
-
-  const brzyckiORM = weightInLbs / (1.0278 - 0.0278 * reps);
-  const epleyORM = weightInLbs * (1 + 0.0333 * reps);
-  const landerORM = (100 * weightInLbs) / (101.3 - 2.67123 * reps);
-
-  const averageORM = (brzyckiORM + epleyORM + landerORM) / 3;
-
-  // Convert back to kgs, and round the value
-  const roundedORM = isLbs
-    ? Math.round(averageORM)
-    : Math.round(averageORM / 2.20462);
-
-  // Add unit string
-  const unit = isLbs ? "lbs" : "kgs";
-  return `${roundedORM}${unit}`;
-}
+import { calculateORM } from "../../helpers/calcFuncs";
+import roundWeight from "../../helpers/roundWeight";
 
 const ORMCalc = () => {
   const [weight, setWeight] = useState("");
@@ -35,11 +11,11 @@ const ORMCalc = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const calculatedORM = calculateORM(weight, reps, isLbs);
-    if (typeof calculatedORM !== "string") {
+    const calculatedORM = calculateORM(weight, reps);
+    if (isNaN(calculatedORM)) {
       return;
     } else {
-      setOneRepMax(calculatedORM);
+      setOneRepMax(roundWeight(calculatedORM, isLbs));
     }
   };
 
@@ -96,7 +72,7 @@ const ORMCalc = () => {
             <div className="text-light-silver text-center text-xl border-2 border-solid border-soft-green rounded-xl p-2">
               <div>Estimated 1RM:</div>{" "}
               <div className="underline underline-offset-4 font-bold text-2xl">
-                {oneRepMax}
+                {`${oneRepMax}${isLbs ? "lbs" : "kg"}`}
               </div>
             </div>
           )}
