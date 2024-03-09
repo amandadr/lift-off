@@ -57,3 +57,11 @@ export const calculateWarmUpSets = (weight, level, isLbs) => {
     });
   }
 };
+
+export const calculateOptimalReps = (oneRepMax) => {
+  const endurance = [oneRepMax * 0.5, oneRepMax * 0.6];
+  const size = [oneRepMax * 0.7, oneRepMax * 0.8];
+  const strength = [oneRepMax * 0.85, oneRepMax * 0.95];
+
+  return { endurance, size, strength };
+};

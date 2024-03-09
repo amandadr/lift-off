@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import HomeLink from "../shared/HomeBtn";
+import LinkBtn from "../shared/LinkBtn";
 import { calculateORM } from "../../helpers/calcFuncs";
 import roundWeight from "../../helpers/roundWeight";
 
@@ -28,16 +29,6 @@ const ORMCalc = () => {
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <input
             type="number"
-            id="reps"
-            value={reps}
-            onChange={(e) => {
-              setReps(e.target.value);
-            }}
-            placeholder="Enter rep count" // You may customize this placeholder
-            className="p-2 rounded-md bg-cinereous text-light-silver font-semibold"
-          />
-          <input
-            type="number"
             id="weight"
             value={weight}
             onChange={(e) => {
@@ -46,6 +37,17 @@ const ORMCalc = () => {
             placeholder={`Enter weight (${isLbs ? "lbs" : "kg"})`}
             className="p-2 rounded-md bg-cinereous text-light-silver font-semibold"
           />
+          <input
+            type="number"
+            id="reps"
+            value={reps}
+            onChange={(e) => {
+              setReps(e.target.value);
+            }}
+            placeholder="Enter rep count" // You may customize this placeholder
+            className="p-2 rounded-md bg-cinereous text-light-silver font-semibold"
+          />
+
           <div className="text-silver">
             <button
               type="button"
@@ -77,7 +79,10 @@ const ORMCalc = () => {
             </div>
           )}
         </form>
-        <HomeLink />
+        <div className="flex justify-between mt-6">
+          <HomeLink />
+          <LinkBtn label="Calculate Reps" route="/optimal-reps" />
+        </div>
       </div>
     </div>
   );
