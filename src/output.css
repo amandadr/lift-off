@@ -569,6 +569,19 @@ video {
   }
 }
 
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.mx-\[-1em\] {
+  margin-left: -1em;
+  margin-right: -1em;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -580,6 +593,10 @@ video {
 
 .mt-4 {
   margin-top: 1rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
 }
 
 .mt-8 {
@@ -606,12 +623,26 @@ video {
   height: 4rem;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .h-\[25vh\] {
   height: 25vh;
 }
 
 .h-\[75vh\] {
   height: 75vh;
+}
+
+.h-fit {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .h-screen {
@@ -648,6 +679,10 @@ video {
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .gap-4 {
@@ -755,6 +790,15 @@ video {
   background-color: rgb(101 199 136 / var(--tw-bg-opacity));
 }
 
+.bg-soft-red {
+  --tw-bg-opacity: 1;
+  background-color: rgb(123 41 42 / var(--tw-bg-opacity));
+}
+
+.bg-goku {
+  background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b61a00ce-99a5-4b30-be86-e7bdf7d9e8ad/dg4puho-fa2f276c-885f-4d4e-8806-5bba041461e4.jpg/v1/fit/w_720,h_899,q_70,strp/body_builder_college_boy_by_skillsclub_dg4puho-375w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODk5IiwicGF0aCI6IlwvZlwvYjYxYTAwY2UtOTlhNS00YjMwLWJlODYtZTdiZGY3ZDllOGFkXC9kZzRwdWhvLWZhMmYyNzZjLTg4NWYtNGQ0ZS04ODA2LTViYmEwNDE0NjFlNC5qcGciLCJ3aWR0aCI6Ijw9NzIwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.AUwa1bgFFRJC-SdXIWtt_xcF2kJj1CYvVCdTN6aFVXc');
+}
+
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
@@ -767,6 +811,18 @@ video {
 
 .to-black-twilight {
   --tw-gradient-to: #000914 var(--tw-gradient-to-position);
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
+}
+
+.object-cover {
+  object-fit: cover;
 }
 
 .p-2 {
@@ -800,6 +856,10 @@ video {
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+.pt-6 {
+  padding-top: 1.5rem;
 }
 
 .text-center {
@@ -874,6 +934,10 @@ video {
   text-underline-offset: 4px;
 }
 
+.opacity-30 {
+  opacity: 0.3;
+}
+
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
@@ -894,6 +958,10 @@ video {
   display: none;
 }
 
+.h1-shadow {
+  text-shadow: 2px 2px 2px #000914;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Muli", "Segoe UI", "Roboto",
@@ -912,9 +980,14 @@ code {
   font-family: "Muli", "roboto", "sans-serif";
 }
 
-.hover\:border-blood-red:hover {
+.hover\:border-crimson:hover {
   --tw-border-opacity: 1;
-  border-color: rgb(153 0 0 / var(--tw-border-opacity));
+  border-color: rgb(220 38 38 / var(--tw-border-opacity));
+}
+
+.hover\:border-dark-red:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(85 29 30 / var(--tw-border-opacity));
 }
 
 .hover\:bg-blood-red:hover {
@@ -930,6 +1003,11 @@ code {
 .hover\:bg-forest:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(22 94 48 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-light-red:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(163 52 55 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-persian-red:hover {

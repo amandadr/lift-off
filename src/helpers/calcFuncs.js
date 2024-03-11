@@ -1,13 +1,6 @@
 import roundWeight from "./roundWeight";
 
 export function calculateORM(weight, reps) {
-  // Validation
-  if (isNaN(weight) || isNaN(reps) || weight <= 0 || reps <= 0) {
-    return alert(
-      "Invalid input: Please enter positive numbers for weight and reps."
-    );
-  }
-
   const brzyckiORM = weight / (1.0278 - 0.0278 * reps);
   const epleyORM = weight * (1 + 0.0333 * reps);
   const landerORM = (100 * weight) / (101.3 - 2.67123 * reps);
@@ -29,11 +22,6 @@ export function calculateORM(weight, reps) {
 }
 
 export const calculateWarmUpSets = (weight, level, isLbs) => {
-  // Validation
-  if (isNaN(weight) || weight <= 0) {
-    return alert("Invalid input: Please enter a positive number for weight.");
-  }
-
   const emptyBar = isLbs ? 45 : 20; // kg equivalent of 45lbs is roughly 20.4kg
 
   if (level === "Novice") {

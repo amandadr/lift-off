@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import HomeLink from "../shared/HomeBtn";
 import { calculateWarmUpSets } from "../../helpers/calcFuncs";
+import barbell from "../../assets/images/barbell.png";
+import stylesData from "../../assets/stylesData";
 
 function WarmUpCalc() {
   const [workingSet, setWorkingSet] = useState("");
   const [experienceLevel, setExperienceLevel] = useState("Novice");
   const [warmUpSets, setWarmUpSets] = useState([]);
-  const [unit, setUnit] = useState("lbs"); // new state for unit toggle
+  const [unit, setUnit] = useState("lbs");
   const isLbs = unit === "lbs";
+  const styles = stylesData(unit);
 
   const toggleUnit = () => {
     setUnit(unit === "lbs" ? "kg" : "lbs");
@@ -15,7 +18,8 @@ function WarmUpCalc() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (workingSet.length === 0) {
+    // Validation
+    if (workingSet <= 0 || isNaN(workingSet)) {
       return;
     } else {
       const calculatedSets = calculateWarmUpSets(
@@ -28,12 +32,13 @@ function WarmUpCalc() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-dark-midnight">
-      <div className="container mx-auto p-6 rounded-md shadow-md shadow-forest bg-charcoal border-solid border-midnight-green border-2 sm:p-8 md:max-w-sm lg:max-w-md overflow-scroll scrollbar-hide">
-        <h1 className="flex text-3xl h-14 justify-center items-center text-light-silver underline underline-offset-4 decoration-dashed decoration-persian-red text-center font-bold bg-gradient-to-b from-blood-red to-black-twilight rounded-md mb-4">
-          Warm Up Sets
-        </h1>
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+    <div className={styles.div1}>
+      <div className={styles.div2}>
+        <div className={styles.divTitle}>
+          <img src={barbell} alt="Barbell" className={styles.barbell} />
+          <h1 className={styles.h1Title}>Warm Up Sets</h1>
+        </div>
+        <form onSubmit={handleSubmit} className={styles.formContainer}>
           <input
             type="number"
             value={workingSet}
@@ -42,19 +47,13 @@ function WarmUpCalc() {
               handleSubmit(e);
             }}
             placeholder={`Enter working set weight (${unit})`}
-            className="p-2 rounded-md bg-cinereous text-light-silver font-semibold"
+            className={styles.inputField}
           />
           <div className="text-silver">
             <button
               type="submit"
               onClick={toggleUnit}
-              className={`px-4 py-2 rounded-md text-charcoal hover:text-silver text-xl
-                        ${
-                          unit === "lbs"
-                            ? "bg-sky hover:bg-royal-blue"
-                            : "bg-soft-green hover:bg-forest"
-                        }
-              `}
+              className={styles.btnUnits}
             >
               {unit === "lbs" ? "Use kg" : "Use lbs"}
             </button>
@@ -86,10 +85,7 @@ function WarmUpCalc() {
             </button>
           </div>
           {workingSet.length === 0 && (
-            <button
-              type="submit"
-              className="px-4 py-2 text-xl rounded-md underline decoration-dotted underline-offset-4 bg-persian-red text-light-silver font-semibold hover:bg-crimson hover:text-2xl hover:text-soft-green hover:font-bold"
-            >
+            <button type="submit" className={styles.btnCalculate}>
               Input to Calculate
             </button>
           )}

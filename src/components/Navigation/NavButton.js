@@ -7,7 +7,7 @@ const NavButton = ({ to, name }) => {
 
   return (
     <button
-      className="bg-blood-red text-lg text-light-silver w-64 h-12 border-solid border-2 border-silver rounded-lg hover:bg-persian-red hover:border-blood-red"
+      className="bg-soft-red text-lg text-light-silver w-64 h-12 border-solid border-2 border-silver rounded-lg hover:bg-light-red hover:border-dark-red"
       type="button"
       onClick={handleClick}
     >

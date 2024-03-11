@@ -3,39 +3,63 @@ import HomeLink from "../shared/HomeBtn";
 import LinkBtn from "../shared/LinkBtn";
 import { calculateORM } from "../../helpers/calcFuncs";
 import roundWeight from "../../helpers/roundWeight";
+import barbell from "../../assets/images/barbell.png";
+import stylesData from "../../assets/stylesData";
 
 const ORMCalc = () => {
   const [weight, setWeight] = useState("");
   const [reps, setReps] = useState("");
-  const [isLbs, setIsLbs] = useState(true);
   const [oneRepMax, setOneRepMax] = useState("");
+  const [unit, setUnit] = useState("lbs");
+  const [change, setChange] = useState(false);
+  const isLbs = unit === "lbs";
+  const styles = stylesData(unit);
+
+  const toggleUnit = () => {
+    setUnit(unit === "lbs" ? "kg" : "lbs");
+  };
+
+  const addBorder = () => {
+    return "border-2 border-solid border-soft-green";
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const calculatedORM = calculateORM(weight, reps);
-    if (isNaN(calculatedORM)) {
+    // Validation
+    if (
+      weight <= 0 ||
+      reps <= 0 ||
+      weight === "" ||
+      reps === "" ||
+      calculatedORM <= 0 ||
+      isNaN(calculatedORM)
+    ) {
       return;
     } else {
       setOneRepMax(roundWeight(calculatedORM, isLbs));
+      setChange(false);
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-dark-midnight">
-      <div className="container mx-auto p-6 rounded-md shadow-md shadow-forest bg-charcoal border-solid border-midnight-green border-2 sm:p-8 md:max-w-sm lg:max-w-md">
-        <h1 className="text-3xl h-12 text-light-silver underline underline-offset-4 decoration-dashed decoration-persian-red text-center font-bold bg-gradient-to-b from-blood-red to-black-twilight rounded-md mb-4">
-          One Rep Max
-        </h1>
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+    <div className={styles.div1}>
+      <div className={styles.div2}>
+        <div className={styles.divTitle}>
+          <img src={barbell} alt="Barbell" className={styles.barbell} />
+          <h1 className={styles.h1Title}>One Rep Max</h1>
+        </div>
+        <form onSubmit={handleSubmit} className={styles.formContainer}>
           <input
             type="number"
             id="weight"
             value={weight}
             onChange={(e) => {
               setWeight(e.target.value);
+              setChange(true);
             }}
             placeholder={`Enter weight (${isLbs ? "lbs" : "kg"})`}
-            className="p-2 rounded-md bg-cinereous text-light-silver font-semibold"
+            className={styles.inputField}
           />
           <input
             type="number"
@@ -43,31 +67,31 @@ const ORMCalc = () => {
             value={reps}
             onChange={(e) => {
               setReps(e.target.value);
+              setChange(true);
             }}
-            placeholder="Enter rep count" // You may customize this placeholder
-            className="p-2 rounded-md bg-cinereous text-light-silver font-semibold"
+            placeholder="Enter rep count"
+            className={styles.inputField}
           />
 
           <div className="text-silver">
             <button
               type="button"
               onClick={(e) => {
-                setIsLbs(!isLbs);
+                toggleUnit();
+                if (oneRepMax !== "") setChange(true);
               }}
-              className={`px-3 py-1 rounded-md text-charcoal hover:text-silver text-xl ${
-                isLbs
-                  ? "bg-sky hover:bg-royal-blue"
-                  : "bg-soft-green hover:bg-forest"
-              }`}
+              className={styles.btnUnits}
             >
               {isLbs ? "Use kg" : "Use lbs"}
             </button>
           </div>
           <button
             type="submit"
-            className="px-4 py-2 text-xl rounded-md underline decoration-dotted underline-offset-4 bg-persian-red text-light-silver font-semibold hover:bg-crimson hover:text-2xl hover:text-soft-green hover:font-bold"
+            className={`${styles.btnCalculate} ${
+              change ? "border-2 border-sky" : null
+            }`}
           >
-            {oneRepMax.length > 0 ? "Recalculate" : "Calculate"}
+            {oneRepMax === "" ? "Calculate" : "Recalculate"}
           </button>
 
           {oneRepMax && (
@@ -79,7 +103,7 @@ const ORMCalc = () => {
             </div>
           )}
         </form>
-        <div className="flex justify-between mt-6">
+        <div className={styles.divFooter}>
           <HomeLink />
           <LinkBtn label="Calculate Reps" route="/optimal-reps" />
         </div>
