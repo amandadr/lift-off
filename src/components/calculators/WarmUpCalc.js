@@ -90,13 +90,15 @@ function WarmUpCalc() {
               Advanced
             </button>
           </div>
-          {workingSet.length === 0 && (
-            <button type="submit" className={styles.btnCalculate}>
-              Input to Calculate
-            </button>
-          )}
+          {workingSet > 0 &&
+            ((isLbs && workingSet >= 55) ||
+            (!isLbs && workingSet >= 22) ? null : (
+              <button type="submit" className={styles.btnCalculate}>
+                More Weight!
+              </button>
+            ))}
 
-          {workingSet.length > 0 && (
+          {(isLbs && workingSet >= 55) || (!isLbs && workingSet >= 22) ? (
             <div className="flex flex-col w-full justify-center content-center mt-4 text-light-silver text-center text-xl border-2 border-solid border-soft-green rounded-xl p-2">
               {warmUpSets.map((set, index) => (
                 <div key={index}>
@@ -109,7 +111,7 @@ function WarmUpCalc() {
                 {isLbs ? "lbs" : "kg"}
               </div>
             </div>
-          )}
+          ) : null}
         </form>
         <div className={styles.divFooter}>
           <HomeLink />

@@ -63,7 +63,7 @@ const OptimalRepsCalc = () => {
             {oneRepMax === "" ? "Calculate" : "Recalculate"}
           </button>
 
-          {Object.keys(optimalReps).length > 0 && (
+          {Object.keys(optimalReps).length > 0 && oneRepMax > 0 ? (
             <div className="text-light-silver text-center text-xl">
               <div className="border-2 border-solid border-soft-green rounded-xl p-2 mb-4">
                 <h2>Endurance (50%-60%):</h2>
@@ -93,7 +93,7 @@ const OptimalRepsCalc = () => {
                 </p>
               </div>
             </div>
-          )}
+          ) : null}
         </form>
         <div className={styles.divFooter}>
           <HomeLink />
