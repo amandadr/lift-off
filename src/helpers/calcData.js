@@ -1,5 +1,5 @@
 const calculators = [
-  { name: "Barbell Calculator", to: "/barbell" },
+  { name: "Plates Calculator", to: "/plates" },
   { name: "One Rep Max Calculator", to: "/one-rep-max" },
   {
     name: "Optimal Reps Calculator",

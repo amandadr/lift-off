@@ -7,8 +7,8 @@ import barbell from "../../assets/images/barbell.png";
 import stylesData from "../../assets/stylesData";
 
 const OptimalRepsCalc = () => {
+  const [optimalReps, setOptimalReps] = useState({});
   const [oneRepMax, setOneRepMax] = useState("");
-  const [results, setResults] = useState({});
   const [unit, setUnit] = useState("lbs");
   const isLbs = unit === "lbs";
   const styles = stylesData(unit);
@@ -25,7 +25,7 @@ const OptimalRepsCalc = () => {
     }
 
     const calculatedReps = calculateOptimalReps(oneRepMax);
-    setResults(calculatedReps);
+    setOptimalReps(calculatedReps);
   };
 
   return (
@@ -60,31 +60,32 @@ const OptimalRepsCalc = () => {
             {oneRepMax === "" ? "Calculate" : "Recalculate"}
           </button>
 
-          {Object.keys(results).length > 0 && (
+          {Object.keys(optimalReps).length > 0 && (
             <div className="text-light-silver text-center text-xl">
               <div className="border-2 border-solid border-soft-green rounded-xl p-2 mb-4">
                 <h2>Endurance (50%-60%):</h2>
                 <p className="text-lg">
-                  {roundWeight(results.endurance[0], isLbs)}
+                  {roundWeight(optimalReps.endurance[0], isLbs)}
                   {isLbs ? "lbs" : "kg"} -{" "}
-                  {roundWeight(results.endurance[1], isLbs)}
+                  {roundWeight(optimalReps.endurance[1], isLbs)}
                   {isLbs ? "lbs" : "kg"} x 15-30 reps
                 </p>
               </div>
               <div className="border-2 border-solid border-soft-green rounded-xl p-2 mb-4">
                 <h2>Size (70%-80%):</h2>
                 <p className="text-lg">
-                  {roundWeight(results.size[0], isLbs)}
-                  {isLbs ? "lbs" : "kg"} - {roundWeight(results.size[1], isLbs)}
+                  {roundWeight(optimalReps.size[0], isLbs)}
+                  {isLbs ? "lbs" : "kg"} -{" "}
+                  {roundWeight(optimalReps.size[1], isLbs)}
                   {isLbs ? "lbs" : "kg"} x 8-12 reps
                 </p>
               </div>
               <div className="border-2 border-solid border-soft-green rounded-xl p-2 mb-4">
                 <h2>Strength (85%-95%):</h2>
                 <p className="text-lg">
-                  {roundWeight(results.strength[0], isLbs)}
+                  {roundWeight(optimalReps.strength[0], isLbs)}
                   {isLbs ? "lbs" : "kg"} -{" "}
-                  {roundWeight(results.strength[1], isLbs)}
+                  {roundWeight(optimalReps.strength[1], isLbs)}
                   {isLbs ? "lbs" : "kg"} x 3-5 reps
                 </p>
               </div>

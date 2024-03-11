@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import HomeLink from "../shared/HomeBtn";
+import LinkBtn from "../shared/LinkBtn";
 import { calculateWarmUpSets } from "../../helpers/calcFuncs";
 import barbell from "../../assets/images/barbell.png";
 import stylesData from "../../assets/stylesData";
@@ -38,7 +39,10 @@ function WarmUpCalc() {
           <img src={barbell} alt="Barbell" className={styles.barbell} />
           <h1 className={styles.h1Title}>Warm Up Sets</h1>
         </div>
-        <form onSubmit={handleSubmit} className={styles.formContainer}>
+        <form
+          onSubmit={handleSubmit}
+          className={`${styles.formContainer} mb-[-2em]`}
+        >
           <input
             type="number"
             value={workingSet}
@@ -105,7 +109,10 @@ function WarmUpCalc() {
             </div>
           )}
         </form>
-        <HomeLink />
+        <div className={styles.divFooter}>
+          <HomeLink />
+          <LinkBtn label="Calculate Plates" route="/barbell" />
+        </div>
       </div>
     </div>
   );

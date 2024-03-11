@@ -1,39 +1,29 @@
 import React, { useState } from "react";
 import HomeLink from "../shared/HomeBtn";
 import LinkBtn from "../shared/LinkBtn";
-import { calculateORM } from "../../helpers/calcFuncs";
-import roundWeight from "../../helpers/roundWeight";
+import { calculatePlates } from "../../helpers/calcFuncs";
 import barbell from "../../assets/images/barbell.png";
 import stylesData from "../../assets/stylesData";
 
-const ORMCalc = () => {
-  const [oneRepMax, setOneRepMax] = useState("");
+const PlatesCalc = () => {
+  const [barbellHalf, setbarbellHalf] = useState({});
   const [weight, setWeight] = useState("");
-  const [reps, setReps] = useState("");
   const [unit, setUnit] = useState("lbs");
   const [change, setChange] = useState(false);
   const isLbs = unit === "lbs";
   const styles = stylesData(unit);
 
-  const toggleUnit = () => {
-    setUnit(unit === "lbs" ? "kg" : "lbs");
-  };
+  // const toggleUnit = () => {
+  //   setUnit(unit === "lbs" ? "kg" : "lbs");
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const calculatedORM = calculateORM(weight, reps);
     // Validation
-    if (
-      weight <= 0 ||
-      reps <= 0 ||
-      weight === "" ||
-      reps === "" ||
-      calculatedORM <= 0 ||
-      isNaN(calculatedORM)
-    ) {
+    if (weight <= 45 || weight === "") {
       return;
     } else {
-      setOneRepMax(roundWeight(calculatedORM, isLbs));
+      setbarbellHalf(calculatePlates(weight));
       setChange(false);
     }
   };
@@ -43,7 +33,7 @@ const ORMCalc = () => {
       <div className={styles.div2}>
         <div className={styles.divTitle}>
           <img src={barbell} alt="Barbell" className={styles.barbell} />
-          <h1 className={styles.h1Title}>One Rep Max</h1>
+          <h1 className={styles.h1Title}>Plates / Side</h1>
         </div>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
           <input
@@ -57,55 +47,57 @@ const ORMCalc = () => {
             placeholder={`Enter weight (${isLbs ? "lbs" : "kg"})`}
             className={styles.inputField}
           />
-          <input
-            type="number"
-            id="reps"
-            value={reps}
-            onChange={(e) => {
-              setReps(e.target.value);
-              setChange(true);
-            }}
-            placeholder="Enter rep count"
-            className={styles.inputField}
-          />
 
-          <div className="text-silver">
+          {/* <div className="text-silver">
             <button
               type="button"
               onClick={(e) => {
                 toggleUnit();
-                if (oneRepMax !== "") setChange(true);
+                if (Object.keys(barbellHalf).length > 0) setChange(true);
               }}
               className={styles.btnUnits}
             >
               {isLbs ? "Use kg" : "Use lbs"}
             </button>
-          </div>
+          </div> */}
           <button
             type="submit"
             className={`${styles.btnCalculate} ${
               change ? "border-2 border-sky" : null
             }`}
           >
-            {oneRepMax === "" ? "Calculate" : "Recalculate"}
+            {Object.keys(barbellHalf).length === 0
+              ? "Calculate"
+              : "Recalculate"}
           </button>
 
-          {oneRepMax && (
-            <div className="text-light-silver text-center text-xl border-2 border-solid border-soft-green rounded-xl p-2">
-              <div>Estimated 1RM:</div>{" "}
-              <div className="underline underline-offset-4 font-bold text-2xl">
-                {`${oneRepMax}${isLbs ? "lbs" : "kg"}`}
+          {Object.keys(barbellHalf).length > 0 && !change && (
+            <div>
+              <div className="flex flex-row justify-around border-2 border-solid border-soft-green rounded-xl p-4 mb-2">
+                {Object.keys(barbellHalf)
+                  .sort((a, b) => b - a)
+                  .map((plate, index) => (
+                    <div key={index} className="text-light-silver text-center">
+                      <p className="text-xl font-bold border-2 border-solid border-sky rounded-xl p-2 px-4 mb-[.1em]">
+                        {plate}
+                      </p>
+                      <p className="text-2xl">x {barbellHalf[plate]}</p>
+                    </div>
+                  ))}
               </div>
+              <p className="text-light-silver text-center text-xl mb-[-2em]">
+                {Math.round(weight / 5) * 5} Total Weight
+              </p>
             </div>
           )}
         </form>
         <div className={styles.divFooter}>
           <HomeLink />
-          <LinkBtn label="Calculate Reps" route="/optimal-reps" />
+          <LinkBtn label="Calculate Warm Up" route="/warm-up-sets" />
         </div>
       </div>
     </div>
   );
 };
 
-export default ORMCalc;
+export default PlatesCalc;

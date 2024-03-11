@@ -53,3 +53,28 @@ export const calculateOptimalReps = (oneRepMax) => {
 
   return { endurance, size, strength };
 };
+
+export const calculatePlates = (weight) => {
+  const plates = [45, 35, 25, 10, 5, 2.5];
+  // consider weight of the barbell
+  if (weight <= 45) return {};
+  weight -= 45;
+  const plateCount = {};
+
+  // round weight to nearest 5
+  weight = Math.round(weight / 5) * 5;
+
+  // calculate one side of the weight
+  const half = weight / 2;
+
+  //calculate plates for half the weight
+  let workingWeight = half;
+  for (const plate of plates) {
+    if (workingWeight >= plate) {
+      plateCount[plate] = Math.floor(workingWeight / plate);
+      workingWeight -= plate * plateCount[plate];
+    }
+  }
+
+  return plateCount;
+};
