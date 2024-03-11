@@ -20,7 +20,7 @@ const PlatesCalc = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Validation
-    if (weight <= 45 || weight === "") {
+    if (weight < 50 || weight === "") {
       return;
     } else {
       setbarbellHalf(calculatePlates(weight));
@@ -72,7 +72,7 @@ const PlatesCalc = () => {
             {!change ? "Calculate" : "Recalculate"}
           </button>
 
-          {Object.keys(barbellHalf).length > 0 && (
+          {Object.keys(barbellHalf).length > 0 && weight >= 50 ? (
             <div>
               <div className="flex flex-row justify-around border-2 border-solid border-soft-green rounded-xl p-4 mb-2">
                 {Object.keys(barbellHalf)
@@ -87,10 +87,10 @@ const PlatesCalc = () => {
                   ))}
               </div>
               <p className="text-light-silver text-center text-xl mb-[-2em]">
-                {Math.round(weight / 5) * 5} Total Weight
+                {Math.round(weight / 5) * 5}lbs Total Weight
               </p>
             </div>
-          )}
+          ) : null}
         </form>
         <div className={styles.divFooter}>
           <HomeLink />

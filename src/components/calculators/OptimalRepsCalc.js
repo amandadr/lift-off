@@ -41,6 +41,9 @@ const OptimalRepsCalc = () => {
             id="oneRepMax"
             value={oneRepMax}
             onChange={(e) => setOneRepMax(e.target.value)}
+            onKeyUpCapture={(e) => {
+              handleSubmit(e);
+            }}
             placeholder={`Enter 1RM (${isLbs ? "lbs" : "kg"})`}
             className={styles.inputField}
           />
