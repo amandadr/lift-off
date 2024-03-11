@@ -2,6 +2,6 @@
 
 To DO:
 
-1. Build App
+1. Build App ✔
 2. Update README....
-3. Deploy :)
+3. Deploy :) ✔

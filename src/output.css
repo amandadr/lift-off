@@ -757,9 +757,9 @@ video {
   border-style: solid;
 }
 
-.border-midnight-green {
+.border-light-red {
   --tw-border-opacity: 1;
-  border-color: rgb(11 66 40 / var(--tw-border-opacity));
+  border-color: rgb(163 52 55 / var(--tw-border-opacity));
 }
 
 .border-silver {
@@ -792,6 +792,11 @@ video {
 .bg-dark-navy {
   --tw-bg-opacity: 1;
   background-color: rgb(11 11 49 / var(--tw-bg-opacity));
+}
+
+.bg-forest {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 94 48 / var(--tw-bg-opacity));
 }
 
 .bg-persian-red {
@@ -959,8 +964,8 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-forest {
-  --tw-shadow-color: #165e30;
+.shadow-soft-red {
+  --tw-shadow-color: #7B292A;
   --tw-shadow: var(--tw-shadow-colored);
 }
 
@@ -995,14 +1000,14 @@ code {
   font-family: "Muli", "roboto", "sans-serif";
 }
 
-.hover\:border-crimson:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(220 38 38 / var(--tw-border-opacity));
-}
-
 .hover\:border-dark-red:hover {
   --tw-border-opacity: 1;
   border-color: rgb(85 29 30 / var(--tw-border-opacity));
+}
+
+.hover\:border-soft-green:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(101 199 136 / var(--tw-border-opacity));
 }
 
 .hover\:bg-blood-red:hover {

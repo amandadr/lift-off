@@ -24,7 +24,7 @@ const ORMCalc = () => {
     const calculatedORM = calculateORM(weight, reps);
     // Validation
     if (
-      weight <= 0 ||
+      weight <= 2 ||
       reps <= 0 ||
       weight === "" ||
       reps === "" ||
@@ -54,6 +54,9 @@ const ORMCalc = () => {
               setWeight(e.target.value);
               setChange(true);
             }}
+            onKeyUpCapture={(e) => {
+              handleSubmit(e);
+            }}
             placeholder={`Enter weight (${isLbs ? "lbs" : "kg"})`}
             className={styles.inputField}
           />
@@ -64,6 +67,9 @@ const ORMCalc = () => {
             onChange={(e) => {
               setReps(e.target.value);
               setChange(true);
+            }}
+            onKeyUpCapture={(e) => {
+              handleSubmit(e);
             }}
             placeholder="Enter rep count"
             className={styles.inputField}
@@ -87,17 +93,17 @@ const ORMCalc = () => {
               change ? "border-2 border-sky" : null
             }`}
           >
-            {oneRepMax === "" ? "Calculate" : "Recalculate"}
+            {!change ? "Calculate" : "Recalculate"}
           </button>
 
-          {oneRepMax && (
+          {oneRepMax ? (
             <div className="text-light-silver text-center text-xl border-2 border-solid border-soft-green rounded-xl p-2">
               <div>Estimated 1RM:</div>{" "}
               <div className="underline underline-offset-4 font-bold text-2xl">
                 {`${oneRepMax}${isLbs ? "lbs" : "kg"}`}
               </div>
             </div>
-          )}
+          ) : null}
         </form>
         <div className={styles.divFooter}>
           <HomeLink />

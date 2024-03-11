@@ -48,6 +48,8 @@ function WarmUpCalc() {
             value={workingSet}
             onChange={(e) => {
               setWorkingSet(e.target.value);
+            }}
+            onKeyUpCapture={(e) => {
               handleSubmit(e);
             }}
             placeholder={`Enter working set weight (${unit})`}
@@ -111,7 +113,7 @@ function WarmUpCalc() {
         </form>
         <div className={styles.divFooter}>
           <HomeLink />
-          <LinkBtn label="Calculate Plates" route="/barbell" />
+          <LinkBtn label="Calculate Plates" route="/plates" />
         </div>
       </div>
     </div>

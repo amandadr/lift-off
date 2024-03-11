@@ -1,7 +1,7 @@
 const stylesData = (unit) => {
   return {
     div1: "flex flex-col items-center justify-center h-screen bg-goku bg-no-repeat bg-cover",
-    div2: "container mx-auto rounded-md bg-charcoal shadow-md shadow-forest border-solid border-midnight-green border-2 sm:p-8 md:max-w-sm lg:max-w-md overflow-scroll scrollbar-hide",
+    div2: "container mx-auto rounded-md bg-charcoal shadow-[0px_6px_30px_7px_#d14136ff] border-solid border-midnight border-[2px] sm:p-8 md:max-w-sm lg:max-w-md overflow-scroll scrollbar-hide",
     divTitle: "relative h-[6.5em] w-full",
     barbell:
       "absolute h-full w-[90%] left-[5%] object-cover opacity-30 mx-auto",

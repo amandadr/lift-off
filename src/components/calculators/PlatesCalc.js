@@ -44,6 +44,9 @@ const PlatesCalc = () => {
               setWeight(e.target.value);
               setChange(true);
             }}
+            onKeyUpCapture={(e) => {
+              handleSubmit(e);
+            }}
             placeholder={`Enter weight (${isLbs ? "lbs" : "kg"})`}
             className={styles.inputField}
           />
@@ -66,12 +69,10 @@ const PlatesCalc = () => {
               change ? "border-2 border-sky" : null
             }`}
           >
-            {Object.keys(barbellHalf).length === 0
-              ? "Calculate"
-              : "Recalculate"}
+            {!change ? "Calculate" : "Recalculate"}
           </button>
 
-          {Object.keys(barbellHalf).length > 0 && !change && (
+          {Object.keys(barbellHalf).length > 0 && (
             <div>
               <div className="flex flex-row justify-around border-2 border-solid border-soft-green rounded-xl p-4 mb-2">
                 {Object.keys(barbellHalf)
