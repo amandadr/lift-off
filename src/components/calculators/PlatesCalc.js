@@ -34,6 +34,7 @@ const PlatesCalc = () => {
         <div className={styles.divTitle}>
           <img src={barbell} alt="Barbell" className={styles.barbell} />
           <h1 className={styles.h1Title}>Plates / Side</h1>
+          <title>Plates per Side (Barbell)</title>
         </div>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
           <input

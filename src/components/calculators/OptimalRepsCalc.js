@@ -34,6 +34,7 @@ const OptimalRepsCalc = () => {
         <div className={styles.divTitle}>
           <img src={barbell} alt="Barbell" className={styles.barbell} />
           <h1 className={styles.h1Title}>Optimal Rep Ranges</h1>
+          <title>Optimal Rep Ranges</title>
         </div>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
           <input

@@ -44,6 +44,7 @@ const ORMCalc = () => {
         <div className={styles.divTitle}>
           <img src={barbell} alt="Barbell" className={styles.barbell} />
           <h1 className={styles.h1Title}>One Rep Max</h1>
+          <title>One Rep Max</title>
         </div>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
           <input

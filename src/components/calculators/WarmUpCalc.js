@@ -38,6 +38,7 @@ function WarmUpCalc() {
         <div className={styles.divTitle}>
           <img src={barbell} alt="Barbell" className={styles.barbell} />
           <h1 className={styles.h1Title}>Warm Up Sets</h1>
+          <title>Warm Up Sets</title>
         </div>
         <form
           onSubmit={handleSubmit}

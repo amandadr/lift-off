@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /
+Disallow: /plates
+Disallow: /one-rep-max
+Disallow: /optimal-reps
+Disallow: /warm-up-sets
